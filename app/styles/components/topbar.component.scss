@@ -28,7 +28,7 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    margin-left: 1rem;
+    margin-left: 6rem;
 
     @include viewports(up-to small) {
       display: none;

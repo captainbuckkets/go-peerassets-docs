@@ -7581,7 +7581,7 @@ function create_main_fragment(component, state) {
 			use = createSvgElement("use");
 			text_1 = createText("\n\n    ");
 			div_2 = createElement("div");
-			div_2.innerHTML = "<img src=\"img/logo.svg\" alt=\"Peercoin Docs\">";
+			div_2.innerHTML = "<img src=\"img/logo.png\" alt=\"Peercoin Docs\">";
 			text_3 = createText("\n\n    ");
 			if (if_block) if_block.c();
 			text_4 = createText("\n\n    ");
