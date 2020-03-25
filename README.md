@@ -1,10 +1,13 @@
-# Peercoin official documentation repository
+# Go-PeerAssets Official Documentation
+
+![alt text](https://github.com/captainbuckkets/go-peerassets-docs/blob/master/public/img/go-peerassets.png "Logo Title Text 1")
+
 
 ----
 
 ## How to contribute:
 
-There are two ways to contribute to Peercoin Docs: Directly via Github website, or by running it locally. Follow the guide that better fits your needs (and knowledge).
+There are two ways to contribute to Go-PeerAssets Docs: Directly via Github website, or by running it locally. Follow the guide that better fits your needs (and knowledge).
 
 #### Directly via Github:
 
