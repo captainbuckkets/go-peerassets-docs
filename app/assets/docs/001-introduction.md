@@ -1,8 +1,6 @@
-# Introduction to Peercoin
+# Introduction to Go-PeerAssets
 
-Hello, and welcome to the Peercoin Documentation website. We hope to help you understand more about this coin, its philosophy and technologies that runs behind it. Before getting too technical, we invite you to dive a little bit into the history of Peercoin, learning why it was created, and the purposes behind it.
-
-The key innovation of Peercoin is the invention of Proof-of-Stake, a blockchain consensus algorithm that provides efficient, sustainable security and user governance, allowing for a trustless cryptocurrency network with adaptive inflation and a core focus on securely storing all types of value.
+Go-PeerAssets (gPA) is an implementation of PeerAssets in Go, originally ported from python.    
 
 ## Peercoin Genesis: 2012
 
@@ -10,7 +8,7 @@ Since the creation of Bitcoin (Nakamoto 2008), Proof-of-Work has been the predom
 
 Since its first block in 2012, Peercoin has remained one of the most energy effective, secure, and size effective blockchains in existence. Many projects have been created using Proof-of-Stake or derivatives, and all can be traced back to Peercoin's original model. Off-chain transactions are extremely compatible with Proof-of-Stake, meaning future developments and scaling will be easy to develop and deploy with Peercoin.
 
-## Peercoin University
+## PeerAssets
 
 [Peercoin university](https://university.peercoin.net/) is a community project aimed at less technical members of the community to grasp and understand the complex topic of public blockchain.
 
