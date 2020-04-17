@@ -1,6 +1,8 @@
 <div class="welcome-card">
-    <img src="img/go-peerassets.png" width="auto" height="auto">
-    <div class="title">Welcome to the Go-PeerAssets Documentation</div>
+  <div class="title">Welcome to Go-PeerAssets Documentation</div>
+  <img src="img/go-peerassets.png" width="auto">
+  <div class="call-to-action">Feel free to navigate through any section of interest.</div>
+
 </div>
 
 ---
@@ -29,30 +31,34 @@ Gets all valid and registered assets on the given network. Returns a JSON object
 **Example:**
 ```
 {
-    <deck_id string>: {
-		version: <version int>, 
-		name: <name string>, 
-		number_of_decimals: <number of decimals int>, 
-		issue_mode: <issue_mode int>,
-                asset_specific_data: <asset_specific_data string>
+    <key>: {
+        data : <data string>,
+        decimals: <decimals int>,
+        fee: <fee int>,
+        mode: <mode string>,
+        name: <name string>,
+        txid: <txid string>,
+        version: <version int>,
     },
     <deck_id string>: { ... },
     <deck_id string>: { ... }
 }
 ```
 ### Attributes
-**deck_id**
- The transaction ID of the deck spawn.
+* **data**
+    Returns asset information stored in the transaction, similar to OP_RETURN.
+* **decimals** 
+    The granularity as defined by the deck spawn owner.
+* **fee**
+    The transactions fee.
+* **mode**
+    The mode the issue mode defined by the deck spawn owner.
 * **name**
- The name of the deck.
+    The name of the deck as defined by the deck spawn owner.
+* **txid** 
+    The transaction id of the deck when it was spawned.
 * **version**
- The version of the deck.
-* **number_of_decimals**
- The granularity as defined by the deck spawn owner. 
-* **issue_mode**
- The issue mode of the deck. 
-* **asset_specific_data**
- Returns asset information stored in the transaction, similar to OP_RETURN.  
+    The version the deck was spawn under.
 
 ### Parameters
 **Example:**```/v1/assets?page=1&limit=25```
@@ -69,66 +75,112 @@ Limits page response to a given number of results.
 
 `GET /v1/transactions/`
 
-Gets information about assets tied to a given address.  Returns a JSON object with with the "Decks" Id or "Cards" as the key, and the asset information as a dictionary. 
+Gets information about assets tied to a given address.  Returns a card or deck JSON object with the asset information as a dictionary. 
 
 **Example:**
 
 ```
 {
-    "cards": {
-        <card_id string>:{
-            version: <version int>, 
-            amount: <name int>, 
-            number_of_decimals: <number of decimals int>, 
-            asset_specific_data: <asset_specific_data string>
-               }, ...}
-    "decks": {
-        <deck_id string>: {
-            version: <version int>, 
-            name: <name string>, 
-            number_of_decimals: <number of decimals int>, 
-            issue_mode: <issue_mode int>,
-            asset_specific_data: <asset_specific_data string>
+    "card": {
+        <key>:{
+            amount: <amount int>,
+            block_height: <block_height int>,
+            card_id: <card_id string>,
+            card_index: <card_index int>,
+            data: <data string>,
+            deck_id: <deck_id string>,
+            receiver: <receiver string>,
+            sender: <sender string>,
+            tx_index: <tx_index int>,
+            type: <type string>,
+            }, ...}
+    "deck": {
+        <key> : {
+            data : <data string>,
+            decimals: <decimals int>,
+            fee: <fee int>,
+            mode: <mode string>,
+            name: <name string>,
+            txid: <txid string>,
+            version: <version int>,
         }, ...}
     
 }
 ```
 ### Attributes
-**card_id**
-The transaction ID of the card.
-* **version**
-The version the card was generated under.
+#### Card
 * **amount**
-The amount of cards of a given deck held by the address
-* **number_of_decimals**
-The granularity as defined by the deck spawn owner. 
-* **asset_specific_data**
-Returns asset information stored in the transaction, similar to OP_RETURN.
+    Amount of a given card held.
+* **block_height**
+    The height at which the transaciton took place.
+* **card_id**
+    The id of the card.  Same as the transaction ID.
+* **data**
+    Returns asset information stored in the transaction, similar to OP_RETURN.
+* **deck_id**
+    The id of the deck.
+* **receiver**
+    Receiver address of the transaction.
+* **sender**
+    Sender address of the transaction.
+* **tx_index**
+    Transaction location in the block.
+* **type**
+    Describes whether the transaction was sent or received.  Returns "send" or "receive".
 
-**deck_id**
- The transaction ID of the deck spawn.
+#### Deck
+* **data**
+    Returns asset information stored in the transaction, similar to OP_RETURN.
+* **decimals** 
+    The granularity as defined by the deck spawn owner.
+* **fee**
+    The transactions fee.
+* **mode**
+    The mode the issue mode defined by the deck spawn owner.
 * **name**
- The name of the deck.
+    The name of the deck as defined by the deck spawn owner.
+* **txid** 
+    The transaction id of the deck when it was spawned.
 * **version**
- The version of the deck.
-* **number_of_decimals**
- The granularity as defined by the deck spawn owner. 
-* **issue_mode**
- The issue mode of the deck. 
-* **asset_specific_data**
- Returns asset information stored in the transaction, similar to OP_RETURN.  
+    The version the deck was spawn under.
 
 ### Parameters
 **Example:** ```/v1/transactions?address=<address>&type=<card|deck>&page=1&limit=25```
 
 * **Address (Required)**
-The public network address being queried.  Required parameter.
+    The public network address being queried.  Required parameter.
 
 * **Type (Required)**
-Accepts either a 'card' or 'deck' parameter.  Returns cards or decks associated with a given address.
+    Accepts either a 'card' or 'deck' parameter.  Returns cards or decks associated with a given address.
 
 * **Page**
-Returns the assets on a given page. Note, returns ten assets per page unless the limit parameter is included.
+    Returns the assets on a given page. Note, returns ten assets per page unless the limit parameter is included.
 
 * **Limit**
-Limits page response to a given number of results.
+    Limits page response to a given number of results.
+
+---
+
+## Balances
+
+`GET /v1/balances/`
+
+Gets information about assets held in balance by the given address.  Returns a JSON object with the asset information and amount. 
+
+**Example:**
+
+```
+{
+    "balances": {
+        <tx_id string>:{
+            amount: <amount int>
+            }, ...}    
+}
+```
+### Attributes
+
+* **amount**
+    Amount of a given card held.
+
+---
+
